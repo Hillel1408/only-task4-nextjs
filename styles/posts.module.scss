@@ -1,0 +1,39 @@
+.blogItems {
+    padding-top: 50px;
+    &__item {
+        display: flex;
+        border: 1px solid #9e9e9e;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        @media (max-width: 700px) {
+            flex-direction: column;
+        }
+        &Img {
+            flex: 0 0 200px;
+            margin-right: 20px;
+            @media (max-width: 700px) {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            img {
+                border-radius: 10px;
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                @media (max-width: 700px) {
+                    height: 400px;
+                }
+            }
+        }
+        &Content {
+            p {
+                margin-bottom: 15px;
+                text-align: justify;
+            }
+            h2 {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
