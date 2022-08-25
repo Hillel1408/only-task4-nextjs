@@ -1,6 +1,6 @@
 import { IOptions, IPost } from '../types/types';
 
-export const useFilter = (posts: IPost[], options: IOptions): IPost[] | undefined => {
+export const useFilter = (posts: IPost[], options: IOptions) => {
 
     const filter = posts.filter((item) => {
         return item[options.filter.name as keyof Omit<IPost, 'id' | 'image'>]
