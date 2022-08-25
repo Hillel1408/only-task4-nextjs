@@ -5,7 +5,7 @@ export const useFilter = (posts: IPost[], options: IOptions): IPost[] | undefine
     const filter = posts.filter((item) => {
         return item[options.filter.name as keyof Omit<IPost, 'id' | 'image'>]
             .toLowerCase()
-            .includes(options.filter.value);
+            .includes(options.filter.value.toLowerCase());
     });
 
     switch (options.sort) {
