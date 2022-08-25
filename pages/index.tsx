@@ -9,7 +9,7 @@ interface IndexPageProps {
 }
 
 export default function Home({ data }: IndexPageProps ) {
-    const [options, setOptions] = useState<IOptions>({
+    const [options, setOptions] = useState({
         sort: 'ASC',
         filter: {
             value: '',
