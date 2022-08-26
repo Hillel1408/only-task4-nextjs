@@ -1,16 +1,18 @@
 import { IOptions, IPost } from '../types/types';
-import { useMemo, useRef} from 'react'
+import { useMemo, useRef } from 'react';
 
 export const useFilters = (posts: IPost[], options: IOptions): IPost[] => {
-    const filter = useRef<IPost[]>([])
+    const filter = useRef<IPost[]>([]);
 
     filter.current = useMemo(() => {
         return posts.filter((item) => {
-            return item[options.filter.name as keyof Omit<IPost, 'id' | 'image'>]
+            return item[
+                options.filter.name as keyof Omit<IPost, 'id' | 'image'>
+            ]
                 .toLowerCase()
-                .includes(options.filter.value);
+                .includes(options.filter.value.toLowerCase());
         });
-    }, [options.filter])
+    }, [options.filter]);
 
     useMemo(() => {
         switch (options.sort) {
@@ -19,7 +21,7 @@ export const useFilters = (posts: IPost[], options: IOptions): IPost[] => {
             case 'DESC':
                 return filter.current.sort((a, b) => b.id - a.id);
         }
-    }, [options.sort])
+    }, [options.sort]);
 
-    return filter.current
-}
+    return filter.current;
+};
