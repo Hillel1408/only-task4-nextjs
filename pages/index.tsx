@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Posts } from '../components/Posts';
 import { Search } from '../components/Search';
-import { useFilter } from '../hooks/useFilters';
-import { IOptions, IPost } from "../types/types";
+import { useFilters } from '../hooks/useFilters';
+import { IPost } from "../types/types";
 
 interface IndexPageProps {
     data: IPost[];
@@ -16,17 +16,13 @@ export default function Home({ data }: IndexPageProps ) {
             name: 'description',
         },
     });
-
-    const [posts, setPosts] = useState<IPost[]>();
-
-    useEffect(() => {
-        setPosts(useFilter(data, options));
-    }, [options]);
-
+    
+    const filteredPosts = useFilters(data, options);
+    
     return (
         <div className="wrapper">
             <Search options={options} setOptions={setOptions} />
-            {posts && <Posts posts={posts} />}
+            {filteredPosts && <Posts posts={filteredPosts} />}
         </div>
     );
 }
